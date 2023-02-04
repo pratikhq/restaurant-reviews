@@ -17,6 +17,24 @@ export default class ReviewsDAO {
     }
   }
 
+  static async getReview ({ id }) {
+    let cursor
+    const query = id ? { restaurant_id: ObjectId(id) } : {}
+    try {
+      cursor = await reviews.find(query)
+    } catch (err) {
+      console.error(`unable to issue find command, ${err}`)
+    }
+    try {
+      const review = await cursor.toArray()
+      const totalNumReviews = await reviews.countDocuments()
+      return { review, totalNumReviews }
+    } catch (err) {
+      console.error('something went wrong in getReview', err)
+    }
+    return { review: [], totalNumReviews: 0 }
+  }
+
   static async addReview ({ restaurantId, user, review, date } = {}) {
     try {
       const reviewDoc = {
