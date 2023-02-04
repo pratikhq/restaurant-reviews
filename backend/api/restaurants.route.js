@@ -9,6 +9,7 @@ router.route('/').get(RestaurantsCtrl.apiGetRestaurants)
 // adding post, put, delete routes
 router
   .route('/review')
+  .get(ReviewsCtrl.apiGetReviewById)
   .post(ReviewsCtrl.apiPostReview)
   .put(ReviewsCtrl.apiUpdateReview)
   .delete(ReviewsCtrl.apiDeleteReview)
