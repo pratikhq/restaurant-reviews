@@ -12,8 +12,6 @@ export default class ReviewsController {
     }
   }
 
-  // temp change
-
   static async apiPostReview (req, res, next) {
     try {
       const restaurantId = req.body.restaurant_id
